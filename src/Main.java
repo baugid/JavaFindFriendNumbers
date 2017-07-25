@@ -51,12 +51,10 @@ public class Main {
                 error = true;
             }
         } while (error);
-        long begin = System.nanoTime();
         ArrayList<Pair> result = genFriendNumbsToMax(max);
         System.out.println("Done!\nSorting...");
         result.stream()
                 .sorted(Comparator.comparingLong(o -> o.number1)) //compares the numbers
                 .forEach((element) -> System.out.println(element.number1 + ", " + element.number2));
-        System.out.println(System.nanoTime()-begin);
     }
 }
