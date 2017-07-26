@@ -18,7 +18,7 @@ public class Main {
         ArrayList<Pair> out = new ArrayList<>();
         LongStream.range(2, max).parallel().forEach((i) -> {
             long dividerSum = sumDivider(i);
-            if (i != dividerSum && i < dividerSum && i == sumDivider(dividerSum)) {
+            if (i < dividerSum && i == sumDivider(dividerSum)) {
                 synchronized (out) {
                     out.add(new Pair(i, dividerSum));
                 }
@@ -40,13 +40,17 @@ public class Main {
 
     public static void main(String[] args) {
         boolean error;
-        long max;
+        long max = 0;
         Scanner input = new Scanner(System.in);
         do {
             System.out.print("Enter maximum value: ");
             error = false;
-            max = input.nextLong();
-            if (max <= 1) {
+            try {
+                max = Long.parseLong(input.next());
+            } catch (Exception e) {
+                error = true;
+            }
+            if (max <= 1 && !error) {
                 System.out.println("Maximum value must be greater than one!");
                 error = true;
             }
