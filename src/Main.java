@@ -1,3 +1,5 @@
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.*;
 
@@ -55,10 +57,13 @@ public class Main {
                 error = true;
             }
         } while (error);
+        Instant start = Instant.now();
         ArrayList<Pair> result = genFriendNumbsToMax(max);
+        Instant end = Instant.now();
         System.out.println("Done!\nSorting...");
         result.stream()
                 .sorted(Comparator.comparingLong(o -> o.number1)) //compares the numbers
                 .forEach((element) -> System.out.println(element.number1 + ", " + element.number2));
+        System.out.println(Duration.between(start,end));
     }
 }
